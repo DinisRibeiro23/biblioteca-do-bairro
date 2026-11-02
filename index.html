@@ -1,42 +1,188 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
-  <link rel="stylesheet" href="style.css">
-<meta charset="utf-8">
-<title>Biblioteca do Bairro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca do Bairro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<h1>Biblioteca do Bairro</h1>
- 
-<h2>Serviços</h2>
-<h3>Empréstimo de livros</h3>
-<h3>Sala de estudo</h3>
-<h2>Horário</h2>
-<h3>Época de exames</h3>
- 
-<p>A biblioteca abriu em 1987.
-Hoje tem
-mais de 20 000 livros.</p>
-<p>Rua das Flores, 12<br>
-4700-123 Braga</p>
-<hr>
-<p>Entrada livre.</p>
- 
-<p>A inscrição é <strong>gratuita</strong>.</p>
-<p>Devolva os livros <em>a tempo</em>.</p>
-<p>Novidade: <mark>sala infantil</mark>!</p>
-<p>H<sub>2</sub>O e 2<sup>10</sup></p>
-<p>Apoio: <abbr title="Câmara Municipal">CM</abbr></p>
-<p>Escreva <code>&lt;p&gt;</code> no editor.</p>
-<p><small>Fotos: arquivo municipal.</small></p>
- 
-<p>Use &lt;p&gt; para parágrafos.</p>
- 
-<p>Quota: 5&nbsp;€</p>
- 
-<p>&copy; 2026 Biblioteca</p>
- 
- 
- 
+  <div class="layout">
+    <header class="cabecalho" id="inicio">
+      <a class="marca" href="#inicio">Biblioteca do Bairro</a>
+      <nav aria-label="Menu principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#eventos">Eventos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contactos">Contactos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="aviso">
+      Feira do Livro · 13 a 15 de novembro — entrada livre!
+    </div>
+
+    <main>
+      <div class="conteudo-principal">
+        <section aria-labelledby="titulo-principal">
+          <p class="etiqueta">Livros · Cultura · Comunidade</p>
+          <h1 id="titulo-principal">Livros, eventos e leitura para todos.</h1>
+          <p class="destaque">Bem-vindo à Biblioteca do Bairro! Descobre novas histórias, participa nos nossos eventos e partilha o gosto pela leitura.</p>
+          <a class="botao" href="#eventos">Ver eventos</a>
+        </section>
+
+        <section id="destaque">
+          <h2>Destaque do mês</h2>
+          <article class="cartao">
+            <p class="etiqueta">Livro recomendado</p>
+            <h3>O Principezinho</h3>
+            <p>Antoine de Saint-Exupéry</p>
+            <p>Uma história intemporal sobre amizade, imaginação e aquilo que realmente importa.</p>
+            <a class="botao" href="#catalogo">Ver catálogo</a>
+          </article>
+        </section>
+
+        <section id="catalogo">
+          <p class="etiqueta">Descobre a próxima leitura</p>
+          <h2>Catálogo de livros</h2>
+          <div class="catalogo">
+            <article class="livro destaque">
+              <div class="capa-livro">O Principezinho</div>
+              <h3>O Principezinho</h3>
+              <p>Antoine de Saint-Exupéry</p>
+              <p>Uma aventura poética para leitores de todas as idades.</p>
+            </article>
+            <article class="livro">
+              <div class="capa-livro">Ensaio sobre a Cegueira</div>
+              <h3>Ensaio sobre a Cegueira</h3>
+              <p>José Saramago</p>
+            </article>
+            <article class="livro">
+              <div class="capa-livro">Os Maias</div>
+              <h3>Os Maias</h3>
+              <p>Eça de Queirós</p>
+            </article>
+            <article class="livro">
+              <div class="capa-livro">Mensagem</div>
+              <h3>Mensagem</h3>
+              <p>Fernando Pessoa</p>
+            </article>
+            <article class="livro">
+              <div class="capa-livro">A Cidade e as Serras</div>
+              <h3>A Cidade e as Serras</h3>
+              <p>Eça de Queirós</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="eventos">
+          <p class="etiqueta">Participa</p>
+          <h2>Próximos eventos</h2>
+          <div class="tabela-wrapper">
+            <table>
+              <thead>
+                <tr><th>Evento</th><th>Data</th><th>Local</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Hora do conto</td><td>Sábado, 10h30</td><td>Sala infantil</td></tr>
+                <tr><td>Oficina de escrita</td><td>Quarta, 18h00</td><td>Sala 2</td></tr>
+                <tr><td>Clube de leitura</td><td>Quinta, 18h30</td><td>Sala principal</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="sobre">
+          <p class="etiqueta">A nossa comunidade</p>
+          <h2>Sobre a biblioteca</h2>
+          <p>A Biblioteca do Bairro é um espaço de encontro, aprendizagem e partilha. Queremos aproximar os livros das pessoas e criar atividades para todas as idades.</p>
+          <h3>A equipa</h3>
+          <div class="equipa">
+            <article class="membro">
+              <div class="foto" aria-label="Representação de Ana">A</div>
+              <h3>Ana Silva</h3>
+              <p>Coordenação</p>
+            </article>
+            <article class="membro">
+              <div class="foto" aria-label="Representação de Rui">R</div>
+              <h3>Rui Costa</h3>
+              <p>Eventos e atividades</p>
+            </article>
+            <article class="membro">
+              <div class="foto" aria-label="Representação de Inês">I</div>
+              <h3>Inês Martins</h3>
+              <p>Catálogo e leitores</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contactos">
+          <p class="etiqueta">Estamos aqui para ajudar</p>
+          <h2>Contactos</h2>
+          <form class="formulario" id="formContacto">
+            <div class="campo">
+              <label for="nome">Nome</label>
+              <input id="nome" name="nome" type="text" required>
+            </div>
+            <div class="campo">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+            <div class="campo">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" required></textarea>
+            </div>
+            <div><button class="botao" type="submit">Enviar mensagem</button></div>
+            <p id="resultadoFormulario" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <aside>
+      <h2>Horário</h2>
+      <p><strong>Segunda a sexta</strong><br>09h00 – 18h00</p>
+      <p><strong>Sábado</strong><br>10h00 – 13h00</p>
+      <p><strong>Domingo</strong><br>Encerrado</p>
+      <hr>
+      <h3>Morada</h3>
+      <p>Rua das Flores, 12</p>
+      <p>Visita-nos e descobre a tua próxima leitura.</p>
+    </aside>
+
+    <footer class="rodape">
+      <div>
+        <h3>Morada</h3>
+        <p>Rua das Flores, 12</p>
+        <p>Biblioteca do Bairro</p>
+      </div>
+      <div>
+        <h3>Horário</h3>
+        <p>Segunda a sexta: 09h00–18h00</p>
+        <p>Sábado: 10h00–13h00</p>
+      </div>
+      <div>
+        <h3>Contactos</h3>
+        <p><a href="mailto:biblioteca@example.com">biblioteca@example.com</a></p>
+        <p>Telefone: 210 000 000</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /* Demonstração local do formulário; não envia dados para um servidor. */
+    document.getElementById('formContacto').addEventListener('submit', function (event) {
+      event.preventDefault();
+      document.getElementById('resultadoFormulario').textContent =
+        'Obrigado! O formulário foi validado nesta demonstração.';
+      this.reset();
+    });
+  </script>
 </body>
 </html>
