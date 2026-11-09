@@ -26,7 +26,6 @@ console.log(typeof livros);
 
 console.log(nome.toUpperCase());
 
-// Verificar se a biblioteca está aberta
 
 let dia = "quarta";
 let hora = 15;
@@ -46,13 +45,12 @@ if (aberta) {
   console.log("Fechada");
 }
 
-// Calcular multa
 
 function calcularMulta(dias) {
   return dias > 15 ? (dias - 15) * 0.50 : 0;
 }
 
-// Verificar horário de funcionamento
+
 
 function estaAberta(dia, hora) {
   return (
@@ -61,13 +59,11 @@ function estaAberta(dia, hora) {
   );
 }
 
-// Formatar valores em euros
 
 function formatarEuros(valor) {
   return valor.toFixed(2).replace(".", ",") + " €";
 }
 
-// Mensagem da multa
 
 function mensagemMulta(dias) {
   let multa = calcularMulta(dias);
@@ -97,7 +93,6 @@ console.log(
   mensagemMulta(20)
 );
 
-// Exercício 5 - Lista de livros
 
 console.log("--- Testes Exercício 5 ---");
 
@@ -113,7 +108,7 @@ listaLivros.push("Memorial do Convento", "Ensaio sobre a Cegueira");
 
 console.log(`Total de livros: ${listaLivros.length}`);
 
-// Lista numerada
+
 
 console.log("--- Lista Numerada ---");
 
@@ -121,14 +116,12 @@ listaLivros.forEach((titulo, i) => {
   console.log(`${i + 1}. ${titulo}`);
 });
 
-// Livros com mais de 10 letras
 
 const longos = listaLivros.filter(t => t.length > 10);
 
 console.log("--- Livros com mais de 10 letras ---");
 console.log(longos);
 
-// Títulos em maiúsculas
 
 const maiusculas = listaLivros.map(t => t.toUpperCase());
 
