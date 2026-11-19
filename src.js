@@ -51,7 +51,6 @@ function calcularMulta(dias) {
 }
 
 
-
 function estaAberta(dia, hora) {
   return (
     (dia !== "sábado" && dia !== "domingo" && hora >= 9 && hora < 19) ||
@@ -107,7 +106,6 @@ const listaLivros = [
 listaLivros.push("Memorial do Convento", "Ensaio sobre a Cegueira");
 
 console.log(`Total de livros: ${listaLivros.length}`);
-
 
 
 console.log("--- Lista Numerada ---");
@@ -221,6 +219,8 @@ if (leitor && listaGeneros) {
 
 
 
+// TEMA E BOTÃO SEGUIR O SISTEMA
+
 const botaoTema = document.querySelector("#botaoTema");
 const seguirSistema = document.querySelector("#seguirSistema");
 
@@ -230,17 +230,25 @@ function aplicarTema() {
     const sistemaEscuro = window.matchMedia &&
         window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    const escuro = temaGuardado
-        ? temaGuardado === "escuro"
-        : sistemaEscuro;
+    const segueSistema = temaGuardado === null || temaGuardado === "sistema";
+
+    const escuro = segueSistema
+        ? sistemaEscuro
+        : temaGuardado === "escuro";
 
     document.body.classList.toggle("escuro", escuro);
 
     if (botaoTema) {
-        botaoTema.setAttribute("aria-pressed", escuro);
+        botaoTema.setAttribute("aria-pressed", String(escuro));
         botaoTema.textContent = escuro
             ? "Ativar tema claro"
             : "Ativar tema escuro";
+    }
+
+    if (seguirSistema) {
+        seguirSistema.textContent = segueSistema
+            ? "Deixar de seguir"
+            : "Seguir o sistema";
     }
 }
 
@@ -256,13 +264,27 @@ if (botaoTema) {
 
 if (seguirSistema) {
     seguirSistema.addEventListener("click", () => {
-        localStorage.removeItem("tema");
+        const temaGuardado = localStorage.getItem("tema");
+
+        const segueSistema = temaGuardado === null || temaGuardado === "sistema";
+
+        if (segueSistema) {
+            const escuro = document.body.classList.contains("escuro");
+
+            localStorage.setItem("tema", escuro ? "escuro" : "claro");
+        } else {
+            localStorage.setItem("tema", "sistema");
+        }
+
         aplicarTema();
     });
 }
 
 aplicarTema();
 
+
+
+// TAMANHO DA LETRA
 
 const tamanhoLetra = document.querySelector("#tamanhoLetra");
 
@@ -301,6 +323,9 @@ if (tamanhoLetra) {
 aplicarTamanhoLetra();
 
 
+
+// AVISO DA BIBLIOTECA
+
 const aviso = document.querySelector(".aviso");
 
 if (aviso) {
@@ -329,6 +354,9 @@ if (aviso) {
 }
 
 
+
+// SINCRONIZAÇÃO ENTRE SEPARADORES
+
 window.addEventListener("storage", (evento) => {
     if (evento.key === "tema") {
         aplicarTema();
@@ -338,4 +366,3 @@ window.addEventListener("storage", (evento) => {
         aplicarTamanhoLetra();
     }
 });
-
