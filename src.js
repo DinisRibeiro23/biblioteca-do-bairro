@@ -128,3 +128,214 @@ const maiusculas = listaLivros.map(t => t.toUpperCase());
 console.log("--- Títulos em maiúsculas ---");
 console.log(maiusculas);
 
+
+
+const contadorVisitas = document.querySelector("#contadorVisitas");
+const recomecarVisitas = document.querySelector("#recomecarVisitas");
+
+function atualizarVisitas() {
+    let visitas = Number(localStorage.getItem("biblioteca:visitas")) || 0;
+
+    visitas++;
+
+    try {
+        localStorage.setItem("biblioteca:visitas", visitas);
+    } catch (erro) {
+        console.warn("Não foi possível guardar as visitas.");
+    }
+
+    if (contadorVisitas) {
+        contadorVisitas.textContent =
+            `É a ${visitas}.ª vez que nos visitas.`;
+    }
+}
+
+if (contadorVisitas) {
+    atualizarVisitas();
+}
+
+if (recomecarVisitas) {
+    recomecarVisitas.addEventListener("click", () => {
+        localStorage.removeItem("biblioteca:visitas");
+
+        if (contadorVisitas) {
+            contadorVisitas.textContent = "Contador reposto.";
+        }
+    });
+}
+
+
+function guardar(chave, valor) {
+    try {
+        localStorage.setItem(chave, JSON.stringify(valor));
+        return true;
+    } catch (erro) {
+        console.warn("Não foi possível guardar:", erro);
+        return false;
+    }
+}
+
+function ler(chave, porOmissao) {
+    try {
+        const texto = localStorage.getItem(chave);
+
+        if (texto === null) {
+            return porOmissao;
+        }
+
+        return JSON.parse(texto);
+    } catch (erro) {
+        console.warn("Não foi possível ler os dados:", erro);
+        return porOmissao;
+    }
+}
+
+const leitorExemplo = {
+    nome: "Leitor da Biblioteca",
+    cartao: "DEMO-001",
+    generos: ["Romance", "Policial"]
+};
+
+if (localStorage.getItem("biblioteca:leitor") === null) {
+    guardar("biblioteca:leitor", leitorExemplo);
+}
+
+const leitor = ler("biblioteca:leitor", null);
+
+const saudacao = document.querySelector("#saudacao");
+const listaGeneros = document.querySelector("#listaGeneros");
+
+if (leitor && saudacao) {
+    saudacao.textContent = `Olá, ${leitor.nome}!`;
+}
+
+if (leitor && listaGeneros) {
+    listaGeneros.replaceChildren();
+
+    for (const genero of leitor.generos || []) {
+        const li = document.createElement("li");
+        li.textContent = genero;
+        listaGeneros.append(li);
+    }
+}
+
+
+
+const botaoTema = document.querySelector("#botaoTema");
+const seguirSistema = document.querySelector("#seguirSistema");
+
+function aplicarTema() {
+    const temaGuardado = localStorage.getItem("tema");
+
+    const sistemaEscuro = window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const escuro = temaGuardado
+        ? temaGuardado === "escuro"
+        : sistemaEscuro;
+
+    document.body.classList.toggle("escuro", escuro);
+
+    if (botaoTema) {
+        botaoTema.setAttribute("aria-pressed", escuro);
+        botaoTema.textContent = escuro
+            ? "Ativar tema claro"
+            : "Ativar tema escuro";
+    }
+}
+
+if (botaoTema) {
+    botaoTema.addEventListener("click", () => {
+        const escuro = !document.body.classList.contains("escuro");
+
+        localStorage.setItem("tema", escuro ? "escuro" : "claro");
+
+        aplicarTema();
+    });
+}
+
+if (seguirSistema) {
+    seguirSistema.addEventListener("click", () => {
+        localStorage.removeItem("tema");
+        aplicarTema();
+    });
+}
+
+aplicarTema();
+
+
+const tamanhoLetra = document.querySelector("#tamanhoLetra");
+
+function aplicarTamanhoLetra() {
+    const tamanho = localStorage.getItem("biblioteca:tamanho-letra") || "normal";
+
+    document.body.classList.remove(
+        "letra-grande",
+        "letra-muito-grande"
+    );
+
+    if (tamanho === "grande") {
+        document.body.classList.add("letra-grande");
+    }
+
+    if (tamanho === "muito-grande") {
+        document.body.classList.add("letra-muito-grande");
+    }
+
+    if (tamanhoLetra) {
+        tamanhoLetra.value = tamanho;
+    }
+}
+
+if (tamanhoLetra) {
+    tamanhoLetra.addEventListener("change", () => {
+        localStorage.setItem(
+            "biblioteca:tamanho-letra",
+            tamanhoLetra.value
+        );
+
+        aplicarTamanhoLetra();
+    });
+}
+
+aplicarTamanhoLetra();
+
+
+const aviso = document.querySelector(".aviso");
+
+if (aviso) {
+    const chaveAviso = "biblioteca:aviso-fechado";
+
+    try {
+        if (sessionStorage.getItem(chaveAviso) === "sim") {
+            aviso.hidden = true;
+        } else {
+            aviso.hidden = false;
+
+            const fecharAviso = document.createElement("button");
+            fecharAviso.textContent = "Fechar aviso";
+            fecharAviso.type = "button";
+
+            aviso.append(fecharAviso);
+
+            fecharAviso.addEventListener("click", () => {
+                aviso.hidden = true;
+                sessionStorage.setItem(chaveAviso, "sim");
+            });
+        }
+    } catch (erro) {
+        console.warn("Não foi possível guardar o estado do aviso.");
+    }
+}
+
+
+window.addEventListener("storage", (evento) => {
+    if (evento.key === "tema") {
+        aplicarTema();
+    }
+
+    if (evento.key === "biblioteca:tamanho-letra") {
+        aplicarTamanhoLetra();
+    }
+});
+

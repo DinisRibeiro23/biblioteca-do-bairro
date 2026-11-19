@@ -1,16 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca do Bairro</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Biblioteca do Bairro - Catálogo</title>
     <script src="app.js" defer></script>
 </head>
 <body>
     
     <header>
         <h1>Biblioteca do Bairro</h1>
+        <nav>
+            <a href="index.html">Início</a>
+        </nav>
     </header>
 
     <main>
@@ -24,7 +27,17 @@
         <ul id="lista-livros"></ul>
 
         <section>
-            <h3>Clube de leitura</h3>
+            <h2>A minha lista de leitura</h2>
+            <ul id="lista-leitura"></ul>
+        </section>
+
+        <section>
+            <h2>Últimas pesquisas</h2>
+            <ul id="historico-pesquisas"></ul>
+        </section>
+
+        <section>
+            <h2>Clube de leitura</h2>
             <form id="inscricao">
                 <input type="text" name="nome" placeholder="O teu nome">
                 <input type="text" name="email" placeholder="O teu e-mail">
@@ -32,7 +45,13 @@
                 <p id="mensagem"></p>
             </form>
         </section>
-    </main>
 
+        <section>
+            <h2>Os meus dados</h2>
+            <pre id="dados-guardados"></pre>
+            <button id="btn-apagar-dados">Apagar os meus dados</button>
+            <p id="mensagem-dados"></p>
+        </section>
+    </main>
 </body>
 </html>

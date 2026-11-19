@@ -506,3 +506,63 @@ aside {
         display: grid;
     }
 }
+
+/* EXERCÍCIO 7 - TEMA ESCURO */
+body.escuro {
+    background-color: #171717;
+    color: #f5f5f5;
+}
+
+body.escuro header,
+body.escuro section,
+body.escuro article,
+body.escuro .cartao {
+    background-color: #252525;
+    color: #f5f5f5;
+}
+
+body.escuro a {
+    color: #8fcaff;
+}
+
+body.escuro input,
+body.escuro textarea,
+body.escuro select {
+    background-color: #333;
+    color: white;
+    border: 1px solid #777;
+}
+
+/* TAMANHO DA LETRA */
+body.letra-grande {
+    font-size: 18px;
+}
+
+body.letra-muito-grande {
+    font-size: 21px;
+}
+
+/* CONTROLOS DE PREFERÊNCIAS */
+#controlos-preferencias {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+#controlos-preferencias button,
+#controlos-preferencias select,
+#zona-visitas button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* FICHA DO LEITOR */
+#zona-leitor,
+#zona-visitas {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+    border-radius: 10px;
+}
