@@ -219,7 +219,6 @@ if (leitor && listaGeneros) {
 
 
 
-// TEMA E BOTÃO SEGUIR O SISTEMA
 
 const botaoTema = document.querySelector("#botaoTema");
 const seguirSistema = document.querySelector("#seguirSistema");
@@ -232,17 +231,14 @@ function aplicarTema() {
 
     const segueSistema = temaGuardado === null || temaGuardado === "sistema";
 
-    const escuro = segueSistema
-        ? sistemaEscuro
-        : temaGuardado === "escuro";
+    // Por defeito, o tema é sempre claro.
+    const escuro = segueSistema ? false : false;
 
     document.body.classList.toggle("escuro", escuro);
 
     if (botaoTema) {
-        botaoTema.setAttribute("aria-pressed", String(escuro));
-        botaoTema.textContent = escuro
-            ? "Ativar tema claro"
-            : "Ativar tema escuro";
+        botaoTema.setAttribute("aria-pressed", "false");
+        botaoTema.textContent = "Tema claro";
     }
 
     if (seguirSistema) {
@@ -254,10 +250,7 @@ function aplicarTema() {
 
 if (botaoTema) {
     botaoTema.addEventListener("click", () => {
-        const escuro = !document.body.classList.contains("escuro");
-
-        localStorage.setItem("tema", escuro ? "escuro" : "claro");
-
+        localStorage.setItem("tema", "claro");
         aplicarTema();
     });
 }
@@ -266,12 +259,8 @@ if (seguirSistema) {
     seguirSistema.addEventListener("click", () => {
         const temaGuardado = localStorage.getItem("tema");
 
-        const segueSistema = temaGuardado === null || temaGuardado === "sistema";
-
-        if (segueSistema) {
-            const escuro = document.body.classList.contains("escuro");
-
-            localStorage.setItem("tema", escuro ? "escuro" : "claro");
+        if (temaGuardado === null || temaGuardado === "sistema") {
+            localStorage.setItem("tema", "claro");
         } else {
             localStorage.setItem("tema", "sistema");
         }
@@ -281,6 +270,7 @@ if (seguirSistema) {
 }
 
 aplicarTema();
+
 
 
 
